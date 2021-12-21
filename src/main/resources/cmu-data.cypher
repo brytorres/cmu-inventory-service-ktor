@@ -1,4 +1,6 @@
 :begin
+CREATE (settings:Settings {config: '{ appName: "Candle Meets Urgy", paymentProcessingPercentage: 2.9, paymentProcessingFee: 0.3, laborHourlyRate: 22 }'})
+
 CREATE
 (amzn:Supplier {
     name: 'Amazon',
@@ -289,9 +291,11 @@ CREATE
     trashedAt: null
 })
 
+// CREATE INDEX FOR (s:Supplier) ON (s.name);
+
 // Create supplier categories
 CREATE
-(jewelry:SupplierCategory {name: 'Jewelry'}),
+(jewelry:SupplierCategory {name: 'Jewelry Supplies'}),
 (containers:SupplierCategory {name: 'Containers'}),
 (tools:SupplierCategory {name: 'Tools'}),
 (minerals:SupplierCategory {name: 'Minerals'}),
@@ -305,63 +309,66 @@ CREATE
 (books:SupplierCategory {name: 'Books'}),
 (perfumes:SupplierCategory {name: 'Perfumes'}),
 (offerings:SupplierCategory {name: 'Offerings'}),
-(marketplace:SupplierCategory {name: 'Marketplace'}),
+(marketplace:SupplierCategory {name: 'Seller Products'}),
 
 // Create supplier to category relationship
-(amzn)-[:IS_CATEGORY]->(marketplace),
-(avry)-[:IS_CATEGORY]->(branding),
-(avry)-[:IS_CATEGORY]->(paper),
-(bmsb)-[:IS_CATEGORY]->(candles),
-(bmsb)-[:IS_CATEGORY]->(trees),
-(bmsb)-[:IS_CATEGORY]->(perfumes),
-(bmsb)-[:IS_CATEGORY]->(offerings),
-(bmsb)-[:IS_CATEGORY]->(books),
-(csc)-[:IS_CATEGORY]->(offerings),
-(csc)-[:IS_CATEGORY]->(minerals),
-(csc)-[:IS_CATEGORY]->(perfumes),
-(csc)-[:IS_CATEGORY]->(herbs),
-(csc)-[:IS_CATEGORY]->(plants),
-(ce)-[:IS_CATEGORY]->(minerals),
-(ce)-[:IS_CATEGORY]->(candles),
-(ce)-[:IS_CATEGORY]->(tools),
-(ce)-[:IS_CATEGORY]->(jewelry),
-(ce)-[:IS_CATEGORY]->(perfumes),
-(ce)-[:IS_CATEGORY]->(offerings),
-(ce)-[:IS_CATEGORY]->(books),
-(eew)-[:IS_CATEGORY]->(minerals),
-(eew)-[:IS_CATEGORY]->(candles),
-(eew)-[:IS_CATEGORY]->(tools),
-(eew)-[:IS_CATEGORY]->(jewelry),
-(eew)-[:IS_CATEGORY]->(perfumes),
-(eew)-[:IS_CATEGORY]->(offerings),
-(eew)-[:IS_CATEGORY]->(books),
-(etsy)-[:IS_CATEGORY]->(marketplace),
-(etsy)-[:IS_CATEGORY]->(minerals),
-(etsy)-[:IS_CATEGORY]->(herbs),
-(etsy)-[:IS_CATEGORY]->(trees),
-(etsy)-[:IS_CATEGORY]->(containers),
-(etsy)-[:IS_CATEGORY]->(tools),
-(jewelry)-[:IS_CATEGORY]->(tools),
-(gb)-[:IS_CATEGORY]->(jewelry),
-(gb)-[:IS_CATEGORY]->(minerals),
-(hf)-[:IS_CATEGORY]->(tools),
-(hf)-[:IS_CATEGORY]->(tools),
-(nauc)-[:IS_CATEGORY]->(minerals),
-(nauc)-[:IS_CATEGORY]->(animals),
-(oldt)-[:IS_CATEGORY]->(containers),
-(penj)-[:IS_CATEGORY]->(plants),
-(pblx)-[:IS_CATEGORY]->(herbs),
-(pblx)-[:IS_CATEGORY]->(offerings),
-(riog)-[:IS_CATEGORY]->(tools),
-(riog)-[:IS_CATEGORY]->(jewelry),
-(sptu)-[:IS_CATEGORY]->(offerings),
-(stpl)-[:IS_CATEGORY]->(paper),
-(stpl)-[:IS_CATEGORY]->(branding),
-(stpl)-[:IS_CATEGORY]->(tools),
+(amzn)-[:SELLS]->(marketplace),
+(avry)-[:SELLS]->(branding),
+(avry)-[:SELLS]->(paper),
+(bmsb)-[:SELLS]->(candles),
+(bmsb)-[:SELLS]->(trees),
+(bmsb)-[:SELLS]->(perfumes),
+(bmsb)-[:SELLS]->(offerings),
+(bmsb)-[:SELLS]->(books),
+(csc)-[:SELLS]->(offerings),
+(csc)-[:SELLS]->(minerals),
+(csc)-[:SELLS]->(perfumes),
+(csc)-[:SELLS]->(herbs),
+(csc)-[:SELLS]->(plants),
+(ce)-[:SELLS]->(minerals),
+(ce)-[:SELLS]->(candles),
+(ce)-[:SELLS]->(tools),
+(ce)-[:SELLS]->(jewelry),
+(ce)-[:SELLS]->(perfumes),
+(ce)-[:SELLS]->(offerings),
+(ce)-[:SELLS]->(books),
+(eew)-[:SELLS]->(minerals),
+(eew)-[:SELLS]->(candles),
+(eew)-[:SELLS]->(tools),
+(eew)-[:SELLS]->(jewelry),
+(eew)-[:SELLS]->(perfumes),
+(eew)-[:SELLS]->(offerings),
+(eew)-[:SELLS]->(books),
+(etsy)-[:SELLS]->(marketplace),
+(etsy)-[:SELLS]->(minerals),
+(etsy)-[:SELLS]->(herbs),
+(etsy)-[:SELLS]->(trees),
+(etsy)-[:SELLS]->(containers),
+(etsy)-[:SELLS]->(tools),
+(jewelry)-[:SELLS]->(tools),
+(gb)-[:SELLS]->(jewelry),
+(gb)-[:SELLS]->(minerals),
+(hf)-[:SELLS]->(tools),
+(hf)-[:SELLS]->(tools),
+(nauc)-[:SELLS]->(minerals),
+(nauc)-[:SELLS]->(animals),
+(oldt)-[:SELLS]->(containers),
+(penj)-[:SELLS]->(plants),
+(pblx)-[:SELLS]->(herbs),
+(pblx)-[:SELLS]->(offerings),
+(riog)-[:SELLS]->(tools),
+(riog)-[:SELLS]->(jewelry),
+(sptu)-[:SELLS]->(offerings),
+(stpl)-[:SELLS]->(paper),
+(stpl)-[:SELLS]->(branding),
+(stpl)-[:SELLS]->(tools);
+
+// Set settings config as json
+MATCH (settings:Settings)
+CALL apoc.convert.setJsonProperty(settings, 'config', { appName: "Candle Meets Urgy", paymentProcessingPercentage: 2.9, paymentProcessingFee: 0.3, laborHourlyRate: 22 })
+RETURN settings;
 
 :commit
 
 // (can:Material {name: 'White Candle', price: 1.90, sku: 119345352, qty: 20}),
 // (can)-[:SUPPLIED_BY]->(ee)
-
-// CREATE INDEX FOR (s:Supplier) ON (s.name)
