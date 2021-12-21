@@ -1,0 +1,1 @@
+cmu-inventory-service
