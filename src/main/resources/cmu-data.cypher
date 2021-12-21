@@ -18,7 +18,6 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (avry:Supplier {
     name: 'Avery',
     description: 'Paper products.',
@@ -37,7 +36,6 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (bmsb:Supplier {
     name: 'Botanica Mi Santa Barbara',
     description: 'Botanica with ATR items.',
@@ -56,7 +54,6 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (csc:Supplier {
     name: 'Chacana Spiritual Center',
     description: 'Peruvian shamanism store and school.',
@@ -75,7 +72,6 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (ce:Supplier {
     name: 'Creative Energy',
     description: 'Spiritual items. Large stone/crystal selection.',
@@ -94,7 +90,6 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (eew:Supplier {
     name: 'Essential Elements Wellness',
     description: 'Spiritual items.',
@@ -113,7 +108,6 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (etsy:Supplier {
     name: 'Etsy',
     description: 'Seller marketplace.',
@@ -132,7 +126,6 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (gb:Supplier {
     name: 'Gani Baba',
     description: 'Gemstone Seller.',
@@ -151,7 +144,6 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (hf:Supplier {
     name: 'Harbor Freight',
     description: 'Tools.',
@@ -170,7 +162,6 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (nauc:Supplier {
     name: 'Nautical Collections',
     description: '',
@@ -189,7 +180,6 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (oldt:Supplier {
     name: 'Old Time Pottery',
     description: 'Pottery and vessels.',
@@ -208,7 +198,6 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (penj:Supplier {
     name: 'Penjing Bonsai Garden',
     description: 'Sells bamboo sticks.',
@@ -227,7 +216,6 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (pblx:Supplier {
     name: 'Publix',
     description: 'Grocery store.',
@@ -246,10 +234,9 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (riog:Supplier {
     name: 'Rio Grande',
-    description: 'Jewelery supply.',
+    description: 'Jewelry supply.',
     phoneNumber: '800-545-6566',
     addressPrimary: '7500 Bluewater Rd NW',
     addressSecondary: null,
@@ -265,7 +252,6 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (sptu:Supplier {
     name: 'Spirits2U',
     description: 'Liquor store.',
@@ -284,7 +270,6 @@ CREATE
     updatedAt: null,
     trashedAt: null
 }),
-
 (stpl:Supplier {
     name: 'Staples',
     description: 'Office products and printing.',
@@ -302,11 +287,81 @@ CREATE
     createdAt: '',
     updatedAt: null,
     trashedAt: null
-}),
+})
+
+// Create supplier categories
+CREATE
+(jewelry:SupplierCategory {name: 'Jewelry'}),
+(containers:SupplierCategory {name: 'Containers'}),
+(tools:SupplierCategory {name: 'Tools'}),
+(minerals:SupplierCategory {name: 'Minerals'}),
+(candles:SupplierCategory {name: 'Candles'}),
+(herbs:SupplierCategory {name: 'Herbs'}),
+(plants:SupplierCategory {name: 'Plants'}),
+(trees:SupplierCategory {name: 'Trees'}),
+(animals:SupplierCategory {name: 'Animals'}),
+(branding:SupplierCategory {name: 'Branding'}),
+(paper:SupplierCategory {name: 'Paper'}),
+(books:SupplierCategory {name: 'Books'}),
+(perfumes:SupplierCategory {name: 'Perfumes'}),
+(offerings:SupplierCategory {name: 'Offerings'}),
+(marketplace:SupplierCategory {name: 'Marketplace'}),
+
+// Create supplier to category relationship
+(amzn)-[:IS_CATEGORY]->(marketplace),
+(avry)-[:IS_CATEGORY]->(branding),
+(avry)-[:IS_CATEGORY]->(paper),
+(bmsb)-[:IS_CATEGORY]->(candles),
+(bmsb)-[:IS_CATEGORY]->(trees),
+(bmsb)-[:IS_CATEGORY]->(perfumes),
+(bmsb)-[:IS_CATEGORY]->(offerings),
+(bmsb)-[:IS_CATEGORY]->(books),
+(csc)-[:IS_CATEGORY]->(offerings),
+(csc)-[:IS_CATEGORY]->(minerals),
+(csc)-[:IS_CATEGORY]->(perfumes),
+(csc)-[:IS_CATEGORY]->(herbs),
+(csc)-[:IS_CATEGORY]->(plants),
+(ce)-[:IS_CATEGORY]->(minerals),
+(ce)-[:IS_CATEGORY]->(candles),
+(ce)-[:IS_CATEGORY]->(tools),
+(ce)-[:IS_CATEGORY]->(jewelry),
+(ce)-[:IS_CATEGORY]->(perfumes),
+(ce)-[:IS_CATEGORY]->(offerings),
+(ce)-[:IS_CATEGORY]->(books),
+(eew)-[:IS_CATEGORY]->(minerals),
+(eew)-[:IS_CATEGORY]->(candles),
+(eew)-[:IS_CATEGORY]->(tools),
+(eew)-[:IS_CATEGORY]->(jewelry),
+(eew)-[:IS_CATEGORY]->(perfumes),
+(eew)-[:IS_CATEGORY]->(offerings),
+(eew)-[:IS_CATEGORY]->(books),
+(etsy)-[:IS_CATEGORY]->(marketplace),
+(etsy)-[:IS_CATEGORY]->(minerals),
+(etsy)-[:IS_CATEGORY]->(herbs),
+(etsy)-[:IS_CATEGORY]->(trees),
+(etsy)-[:IS_CATEGORY]->(containers),
+(etsy)-[:IS_CATEGORY]->(tools),
+(jewelry)-[:IS_CATEGORY]->(tools),
+(gb)-[:IS_CATEGORY]->(jewelry),
+(gb)-[:IS_CATEGORY]->(minerals),
+(hf)-[:IS_CATEGORY]->(tools),
+(hf)-[:IS_CATEGORY]->(tools),
+(nauc)-[:IS_CATEGORY]->(minerals),
+(nauc)-[:IS_CATEGORY]->(animals),
+(oldt)-[:IS_CATEGORY]->(containers),
+(penj)-[:IS_CATEGORY]->(plants),
+(pblx)-[:IS_CATEGORY]->(herbs),
+(pblx)-[:IS_CATEGORY]->(offerings),
+(riog)-[:IS_CATEGORY]->(tools),
+(riog)-[:IS_CATEGORY]->(jewelry),
+(sptu)-[:IS_CATEGORY]->(offerings),
+(stpl)-[:IS_CATEGORY]->(paper),
+(stpl)-[:IS_CATEGORY]->(branding),
+(stpl)-[:IS_CATEGORY]->(tools),
 
 :commit
 
-(can:Material {name: 'White Candle', price: 1.90, sku: 119345352, qty: 20}),
-(can)-[:SUPPLIED_BY]->(ee)
+// (can:Material {name: 'White Candle', price: 1.90, sku: 119345352, qty: 20}),
+// (can)-[:SUPPLIED_BY]->(ee)
 
-CREATE INDEX FOR (s:Supplier) ON (s.name)
+// CREATE INDEX FOR (s:Supplier) ON (s.name)
