@@ -1,0 +1,1 @@
+rootProject.name = "com.candlemeetsurgy.cmu-inventory-service"
